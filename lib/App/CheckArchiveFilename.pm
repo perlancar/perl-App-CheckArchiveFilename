@@ -35,10 +35,14 @@ sub check_archive_filename {
             filename => $filename);
         if ($fres) {
             $rec->{is_archive} = 1;
-            for (qw/archive_name compressor_info/) {
-                $rec->{$_} = $fres->{$_};
+            $rec->{archive_name} = $fres->{archive_name};
+            if ($fres->{compressor_info}) {
+                $rec->{is_compressed} = 1;
+                # we'll just display the outermost compressor (e.g. compressor
+                # for file.tar.gz.bz2 is bzip2). this is rare though.
+                $rec->{compressor_name}   = $fres->{compressor_info}[0]{compressor_name};
+                $rec->{compressor_suffix} = $fres->{compressor_info}[0]{compressor_suffix};
             }
-            $rec->{is_compressed} = $fres->{compressor_info} ? 1:0;
         } else {
             $rec->{is_archive} = 0;
         }
