@@ -58,7 +58,8 @@ sub check_archive_filename {
     }
 
     [200, "OK", \@res, {
-        'table.fields' => [qw/filename is_archive is_compressed/],
+        'table.fields' => [qw/filename is_archive is_compressed
+                             archive_name compressor_name compressor_suffix/],
     }];
 }
 
