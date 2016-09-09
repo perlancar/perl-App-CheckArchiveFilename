@@ -1,5 +1,10 @@
 Revision history for App-CheckArchiveFilename
 
+0.002   2016-09-09 (PERLANCAR)
+
+	- Also show compressor types for compressed non-archives.
+
+
 0.001   2016-09-09 (PERLANCAR)
 
         - First release.
