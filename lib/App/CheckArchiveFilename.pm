@@ -28,15 +28,9 @@ sub check_archive_filename {
 
     my %args = @_;
     my $filenames = $args{filenames};
-    my ($has_errors, $has_success);
 
     my @res;
     for my $filename (@$filenames) {
-        unless (-f $filename) {
-            warn "No such file: $filename\n";
-            $has_errors++;
-            next;
-        };
         my $rec = {filename => $filename};
         my $ares = Filename::Archive::check_archive_filename(
             filename => $filename);
@@ -61,16 +55,9 @@ sub check_archive_filename {
             }
         }
         push @res, $rec;
-        $has_success++;
     }
 
-    my ($status, $msg);
-    if ($has_errors && !$has_success) {
-        ($status, $msg) = (500, "Error");
-    } else {
-        ($status, $msg) = (200, "OK");
-    }
-    [$status, $msg, \@res, {
+    [200, "OK", \@res, {
         'table.fields' => [qw/filename is_archive is_compressed/],
     }];
 }
