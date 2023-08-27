@@ -40,6 +40,7 @@ sub check_archive_filename {
             $rec->{is_archive} = 1;
             $rec->{archive_name} = $ares->{archive_name};
             $rec->{archive_suffix} = $ares->{archive_suffix};
+            $rec->{filename_without_suffix} = $ares->{filename_without_suffix};
             if ($ares->{compressor_info}) {
                 $rec->{is_compressed} = 1;
                 # we'll just display the outermost compressor (e.g. compressor
