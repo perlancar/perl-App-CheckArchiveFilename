@@ -1,11 +1,13 @@
 package App::CheckArchiveFilename;
 
-# DATE
-# VERSION
-
 use 5.010001;
 use strict;
 use warnings;
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 our %SPEC;
 
@@ -37,6 +39,7 @@ sub check_archive_filename {
         if ($ares) {
             $rec->{is_archive} = 1;
             $rec->{archive_name} = $ares->{archive_name};
+            $rec->{archive_suffix} = $ares->{archive_suffix};
             if ($ares->{compressor_info}) {
                 $rec->{is_compressed} = 1;
                 # we'll just display the outermost compressor (e.g. compressor
